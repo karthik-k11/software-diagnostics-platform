@@ -1,0 +1,25 @@
+<hr style="margin:40px 0;">
+
+<h3>Suggestions</h3>
+
+<div style="text-align:left;line-height:2;">
+
+{% if analysis.suggestions %}
+
+<ul>
+
+{% for suggestion in analysis.suggestions %}
+
+<li>{{ suggestion }}</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No suggestions. Excellent project health.</p>
+
+{% endif %}
+
+</div>

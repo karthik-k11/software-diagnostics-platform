@@ -1,0 +1,54 @@
+<hr style="margin:40px 0;">
+
+                <h3>Documentation Analysis</h3>
+
+                <div style="text-align:left;line-height:2;margin-top:20px;">
+
+                <p>
+                README :
+
+                {% if statistics.readme_exists %}
+
+                ✓ {{ statistics.readme_status }}
+
+                ({{ statistics.readme_lines }} lines)
+
+                {% else %}
+
+                ✗ Missing
+
+                {% endif %}
+                </p>
+
+                <p>
+                .gitignore :
+                {% if statistics.gitignore_exists %}
+                ✓ Found ({{ statistics.gitignore_entries }} entries)
+                {% else %}
+                ✗ Missing
+                {% endif %}
+                </p>
+
+                <p>
+                requirements.txt :
+                {% if statistics.requirements_exists %}
+
+                <ul>
+
+                {% for package in statistics.packages %}
+
+                <li>{{ package }}</li>
+
+                {% endfor %}
+
+                </ul>
+
+                {% endif %}
+                {% if statistics.requirements_exists %}
+                ✓ Found ({{ statistics.package_count }} packages)
+                {% else %}
+                ✗ Missing
+                {% endif %}
+                </p>
+
+                </div>

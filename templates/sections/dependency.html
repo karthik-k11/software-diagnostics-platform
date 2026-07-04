@@ -1,0 +1,33 @@
+<hr style="margin:40px 0;">
+
+<h3>Dependency Analysis</h3>
+
+<div style="text-align:left;line-height:2;">
+
+<p><strong>Total Imports :</strong> {{ analysis.total_imports }}</p>
+
+<h4>Standard Library</h4>
+
+<ul>
+
+{% for module, count in analysis.standard_imports.items() %}
+
+<li>{{ module }} ({{ count }})</li>
+
+{% endfor %}
+
+</ul>
+
+<h4>Third-Party Libraries</h4>
+
+<ul>
+
+{% for module, count in analysis.third_party_imports.items() %}
+
+<li>{{ module }} ({{ count }})</li>
+
+{% endfor %}
+
+</ul>
+
+</div>

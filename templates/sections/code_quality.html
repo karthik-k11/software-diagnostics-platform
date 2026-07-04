@@ -1,0 +1,138 @@
+<hr style="margin:40px 0;">
+
+                <h3>Code Quality</h3>
+
+                <div style="text-align:left;line-height:2;">
+
+                <h4>Empty Files</h4>
+
+                {% if analysis.empty_files %}
+
+                <ul>
+
+                {% for file in analysis.empty_files %}
+
+                <li>{{ file }}</li>
+
+                {% endfor %}
+
+                </ul>
+
+                {% else %}
+
+                <p>No empty files found.</p>
+
+                {% endif %}
+
+                <h4 style="margin-top:25px;">Empty Folders</h4>
+
+                {% if analysis.empty_folders %}
+
+                <ul>
+
+                {% for folder in analysis.empty_folders %}
+
+                <li>{{ folder }}</li>
+
+                {% endfor %}
+
+                </ul>
+
+                {% else %}
+
+                <p>No empty folders found.</p>
+
+                {% endif %}
+
+                <h4 style="margin-top:25px;">Large Files</h4>
+
+                {% if analysis.large_files %}
+
+                <ul>
+
+                {% for file in analysis.large_files %}
+
+                <li>
+                {{ file.path }}
+                ({{ file.lines }} lines)
+                </li>
+
+                {% endfor %}
+
+                </ul>
+
+                {% else %}
+
+                <p>No large files found.</p>
+
+                {% endif %}
+
+                <h4 style="margin-top:25px;">Long Functions</h4>
+
+                {% if analysis.long_functions %}
+
+                <ul>
+
+                {% for function in analysis.long_functions %}
+
+                <li>
+                {{ function.file }}
+                <br>
+                {{ function.function }} ({{ function.lines }} lines)
+                </li>
+
+                {% endfor %}
+
+                </ul>
+
+                {% else %}
+
+                <p>No long functions found.</p>
+
+                {% endif %}
+
+                <h4 style="margin-top:25px;">Long Classes</h4>
+
+                {% if analysis.long_classes %}
+
+                <ul>
+
+                {% for cls in analysis.long_classes %}
+
+                <li>
+                {{ cls.file }}
+                <br>
+                {{ cls.class }} ({{ cls.lines }} lines)
+                </li>
+
+                {% endfor %}
+
+                </ul>
+
+                {% else %}
+
+                <p>No long classes found.</p>
+
+                {% endif %}
+
+                <h4 style="margin-top:25px;">Duplicate Filenames</h4>
+
+                {% if analysis.duplicate_filenames %}
+
+                <ul>
+
+                {% for file in analysis.duplicate_filenames %}
+
+                <li>{{ file }}</li>
+
+                {% endfor %}
+
+                </ul>
+
+                {% else %}
+
+                <p>No duplicate filenames found.</p>
+
+                {% endif %}
+
+                </div>

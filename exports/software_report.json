@@ -1,0 +1,279 @@
+{
+    "statistics": {
+        "total_files": 18,
+        "total_folders": 3,
+        "python_files": 8,
+        "html_files": 2,
+        "css_files": 1,
+        "javascript_files": 1,
+        "json_files": 0,
+        "markdown_files": 1,
+        "image_files": 0,
+        "total_lines": 2463,
+        "largest_file": "static\\style.css",
+        "largest_lines": 942,
+        "smallest_file": "config.py",
+        "smallest_lines": 11,
+        "readme_exists": true,
+        "readme_lines": 0,
+        "readme_status": "Empty",
+        "gitignore_exists": true,
+        "gitignore_entries": 7,
+        "requirements_exists": true,
+        "package_count": 67,
+        "packages": [
+            "a\u0000n\u0000n\u0000o\u0000t\u0000a\u0000t\u0000e\u0000d\u0000-\u0000t\u0000y\u0000p\u0000e\u0000s\u0000=\u0000=\u00000\u0000.\u00007\u0000.\u00000\u0000",
+            "\u0000",
+            "\u0000a\u0000n\u0000y\u0000i\u0000o\u0000=\u0000=\u00004\u0000.\u00001\u00004\u0000.\u00000\u0000",
+            "\u0000",
+            "\u0000b\u0000l\u0000i\u0000n\u0000k\u0000e\u0000r\u0000=\u0000=\u00001\u0000.\u00009\u0000.\u00000\u0000",
+            "\u0000",
+            "\u0000c\u0000e\u0000r\u0000t\u0000i\u0000f\u0000i\u0000=\u0000=\u00002\u00000\u00002\u00006\u0000.\u00006\u0000.\u00001\u00007\u0000",
+            "\u0000",
+            "\u0000c\u0000f\u0000f\u0000i\u0000=\u0000=\u00002\u0000.\u00000\u0000.\u00000\u0000",
+            "\u0000"
+        ],
+        "files": [
+            {
+                "name": ".env",
+                "path": ".env",
+                "extension": "",
+                "lines": 1,
+                "size": 68
+            },
+            {
+                "name": ".gitignore",
+                "path": ".gitignore",
+                "extension": "",
+                "lines": 18,
+                "size": 194
+            },
+            {
+                "name": "app.py",
+                "path": "app.py",
+                "extension": ".py",
+                "lines": 125,
+                "size": 2810
+            },
+            {
+                "name": "config.py",
+                "path": "config.py",
+                "extension": ".py",
+                "lines": 11,
+                "size": 244
+            },
+            {
+                "name": "db.py",
+                "path": "db.py",
+                "extension": ".py",
+                "lines": 136,
+                "size": 2434
+            },
+            {
+                "name": "prompt_optimizer.py",
+                "path": "prompt_optimizer.py",
+                "extension": ".py",
+                "lines": 73,
+                "size": 1557
+            },
+            {
+                "name": "prompt_scorer.py",
+                "path": "prompt_scorer.py",
+                "extension": ".py",
+                "lines": 200,
+                "size": 3224
+            },
+            {
+                "name": "prompt_templates.py",
+                "path": "prompt_templates.py",
+                "extension": ".py",
+                "lines": 114,
+                "size": 2548
+            },
+            {
+                "name": "README.md",
+                "path": "README.md",
+                "extension": ".md",
+                "lines": 0,
+                "size": 0
+            },
+            {
+                "name": "requirements.txt",
+                "path": "requirements.txt",
+                "extension": ".txt",
+                "lines": 67,
+                "size": 1244
+            },
+            {
+                "name": "test_gemini.py",
+                "path": "test_gemini.py",
+                "extension": ".py",
+                "lines": 11,
+                "size": 243
+            },
+            {
+                "name": "utils.py",
+                "path": "utils.py",
+                "extension": ".py",
+                "lines": 0,
+                "size": 0
+            },
+            {
+                "name": ".gitkeep",
+                "path": "database\\.gitkeep",
+                "extension": "",
+                "lines": 0,
+                "size": 0
+            },
+            {
+                "name": "prompts.db",
+                "path": "database\\prompts.db",
+                "extension": ".db",
+                "lines": 111,
+                "size": 20480
+            },
+            {
+                "name": "script.js",
+                "path": "static\\script.js",
+                "extension": ".js",
+                "lines": 243,
+                "size": 5017
+            },
+            {
+                "name": "style.css",
+                "path": "static\\style.css",
+                "extension": ".css",
+                "lines": 942,
+                "size": 10362
+            },
+            {
+                "name": "history.html",
+                "path": "templates\\history.html",
+                "extension": ".html",
+                "lines": 176,
+                "size": 3179
+            },
+            {
+                "name": "index.html",
+                "path": "templates\\index.html",
+                "extension": ".html",
+                "lines": 235,
+                "size": 4966
+            }
+        ],
+        "project_tree": [
+            "\u251c\u2500\u2500 database",
+            "\u2502   \u251c\u2500\u2500 .gitkeep",
+            "\u2502   \u2514\u2500\u2500 prompts.db",
+            "\u251c\u2500\u2500 static",
+            "\u2502   \u251c\u2500\u2500 script.js",
+            "\u2502   \u2514\u2500\u2500 style.css",
+            "\u251c\u2500\u2500 templates",
+            "\u2502   \u251c\u2500\u2500 history.html",
+            "\u2502   \u2514\u2500\u2500 index.html",
+            "\u251c\u2500\u2500 .env",
+            "\u251c\u2500\u2500 .gitignore",
+            "\u251c\u2500\u2500 app.py",
+            "\u251c\u2500\u2500 config.py",
+            "\u251c\u2500\u2500 db.py",
+            "\u251c\u2500\u2500 prompt_optimizer.py",
+            "\u251c\u2500\u2500 prompt_scorer.py",
+            "\u251c\u2500\u2500 prompt_templates.py",
+            "\u251c\u2500\u2500 README.md",
+            "\u251c\u2500\u2500 requirements.txt",
+            "\u251c\u2500\u2500 test_gemini.py",
+            "\u2514\u2500\u2500 utils.py"
+        ]
+    },
+    "analysis": {
+        "empty_files": [
+            "README.md",
+            "utils.py"
+        ],
+        "empty_folders": [],
+        "large_files": [
+            {
+                "path": "static\\style.css",
+                "lines": 942
+            }
+        ],
+        "long_functions": [
+            {
+                "file": "app.py",
+                "function": "optimize",
+                "lines": 80
+            },
+            {
+                "file": "db.py",
+                "function": "save_prompt",
+                "lines": 46
+            },
+            {
+                "file": "prompt_optimizer.py",
+                "function": "optimize_prompt",
+                "lines": 62
+            },
+            {
+                "file": "prompt_scorer.py",
+                "function": "analyze_prompt",
+                "lines": 165
+            }
+        ],
+        "long_classes": [],
+        "duplicate_filenames": [],
+        "todos": [],
+        "fixmes": [],
+        "hacks": [],
+        "notes": [],
+        "secrets": [
+            {
+                "file": "config.py",
+                "line": 6,
+                "type": "API Key"
+            },
+            {
+                "file": "prompt_optimizer.py",
+                "line": 9,
+                "type": "API Key"
+            },
+            {
+                "file": "test_gemini.py",
+                "line": 4,
+                "type": "API Key"
+            }
+        ],
+        "standard_imports": {
+            "os": 1,
+            "pathlib": 1,
+            "re": 1
+        },
+        "third_party_imports": {
+            "flask": 1,
+            "prompt_optimizer": 1,
+            "prompt_scorer": 1,
+            "db": 1,
+            "dotenv": 1,
+            "sqlite3": 1,
+            "time": 1,
+            "google": 3,
+            "config": 2,
+            "prompt_templates": 1
+        },
+        "total_imports": 16,
+        "health": {
+            "documentation": 60,
+            "maintainability": 80,
+            "security": 70,
+            "organization": 94,
+            "dependencies": 100,
+            "overall": 81
+        },
+        "suggestions": [
+            "README is empty. Add project overview and setup instructions.",
+            "4 long function(s) detected. Consider splitting them.",
+            "2 empty file(s) detected.",
+            "3 possible secret(s) detected. Move them to environment variables.",
+            "1 large file(s) detected. Consider splitting them."
+        ]
+    }
+}

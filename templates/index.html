@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Diagnostics Platform</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo">SDP</div>
+
+        <h2>Software Diagnostics</h2>
+
+        <nav>
+            <a class="active">Dashboard</a>
+            <a>Project Structure</a>
+            <a>Statistics</a>
+            <a>Documentation</a>
+            <a>Dependencies</a>
+            <a>Security</a>
+            <a>Suggestions</a>
+            <a href="/history">History</a>
+            <a>Export</a>
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Software Diagnostics Platform</h1>
+                <p>Analyze, evaluate and improve Python software projects.</p>
+            </div>
+
+            <div class="status">
+                Ready
+            </div>
+
+        </header>
+
+        <section class="workspace">
+
+            <div class="upload-panel">
+
+                <h2>Upload Python Project</h2>
+
+                <p>Select a ZIP file containing your Python project.</p>
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div style="margin-bottom:20px;color:#15803d;font-weight:600;">
+                    {{ messages[0] }}
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+
+                    <input
+                        type="file"
+                        name="project_zip"
+                        accept=".zip"
+                        required
+                        style="margin-bottom:25px;">
+
+                    <br>
+
+                    <button type="submit">
+                        Upload Project
+                    </button>
+                    <br><br>
+
+                    <a href="/export/json">
+
+                    <button type="button">
+
+                    Export JSON Report
+
+                    </button>
+
+                    </a>
+                    <br><br>
+
+                    <a href="/export/markdown">
+
+                    <button type="button">
+
+                    Export Markdown Report
+
+                    </button>
+
+                    </a>
+                    <br><br>
+
+                    <a href="/export/pdf">
+
+                    <button type="button">
+
+                    Export PDF Report
+
+                    </button>
+
+                    </a>
+
+                </form>
+
+                {% if statistics %}
+                    {% include "sections/statistics.html" %}
+                    {% include "sections/documentation.html" %}
+                {% endif %}
+
+                {% if analysis %}
+                    {% include "sections/code_quality.html" %}
+                    {% include "sections/security.html" %}
+                    {% include "sections/dependency.html" %}
+                    {% include "sections/health_score.html" %}
+                    {% include "sections/suggestions.html" %}
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

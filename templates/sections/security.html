@@ -1,0 +1,35 @@
+<hr style="margin:40px 0;">
+
+                <h3>Security & Project Hygiene</h3>
+
+                <div style="text-align:left;line-height:2;">
+
+                <p><strong>TODOs:</strong> {{ analysis.todos|length }}</p>
+                <p><strong>FIXMEs:</strong> {{ analysis.fixmes|length }}</p>
+                <p><strong>HACKs:</strong> {{ analysis.hacks|length }}</p>
+                <p><strong>NOTEs:</strong> {{ analysis.notes|length }}</p>
+
+                <h4 style="margin-top:25px;">Possible Secrets</h4>
+
+                {% if analysis.secrets %}
+
+                <ul>
+
+                {% for secret in analysis.secrets %}
+
+                <li>
+                {{ secret.file }}
+                (Line {{ secret.line }}) - {{ secret.type }}
+                </li>
+
+                {% endfor %}
+
+                </ul>
+
+                {% else %}
+
+                <p>No possible secrets detected.</p>
+
+                {% endif %}
+
+                </div>

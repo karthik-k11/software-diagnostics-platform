@@ -1,0 +1,55 @@
+<hr style="margin:40px 0;">
+
+                <h3>Project Statistics</h3>
+
+                <div style="margin-top:20px; text-align:left; line-height:2;">
+
+                <p>Total Files : {{ statistics.total_files }}</p>
+
+                <p>Total Folders : {{ statistics.total_folders }}</p>
+
+                <p>Python Files : {{ statistics.python_files }}</p>
+
+                <p>HTML Files : {{ statistics.html_files }}</p>
+
+                <p>CSS Files : {{ statistics.css_files }}</p>
+
+                <p>JavaScript Files : {{ statistics.javascript_files }}</p>
+
+                <p>JSON Files : {{ statistics.json_files }}</p>
+
+                <p>Markdown Files : {{ statistics.markdown_files }}</p>
+
+                <p>Image Files : {{ statistics.image_files }}</p>
+                <hr style="margin:25px 0;">
+
+                <p><strong>Total Lines :</strong> {{ statistics.total_lines }}</p>
+
+                <p><strong>Largest File :</strong>
+                {{ statistics.largest_file }}
+                ({{ statistics.largest_lines }} lines)
+                </p>
+
+                <p><strong>Smallest File :</strong>
+                {{ statistics.smallest_file }}
+                ({{ statistics.smallest_lines }} lines)
+                </p>
+
+                <hr style="margin:25px 0;">
+
+                <h3>Project Structure</h3>
+
+                <pre style="
+                background:#f8fafc;
+                padding:20px;
+                border-radius:10px;
+                margin-top:15px;
+                overflow:auto;
+                font-size:14px;
+                ">
+
+                {% for line in statistics.project_tree %}
+                {{ line }}
+                {% endfor %}
+
+                </pre>
