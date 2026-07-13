@@ -6,6 +6,7 @@ def calculate_health(statistics, results):
     organization = 100
     dependencies = 100
 
+    # Documentation
 
     if not statistics["readme_exists"]:
         documentation -= 50
@@ -22,17 +23,22 @@ def calculate_health(statistics, results):
     if not statistics["requirements_exists"]:
         documentation -= 30
 
+    # Maintainability
+
     maintainability -= len(results["long_functions"]) * 5
     maintainability -= len(results["long_classes"]) * 8
     maintainability -= len(results["duplicate_filenames"]) * 3
 
+    # Security
 
     security -= len(results["secrets"]) * 10
 
+    # Organization
 
     organization -= len(results["empty_files"]) * 3
     organization -= len(results["empty_folders"]) * 5
 
+    # Dependencies
 
     if results["total_imports"] == 0:
         dependencies -= 30
@@ -44,25 +50,20 @@ def calculate_health(statistics, results):
     dependencies = max(0, dependencies)
 
     overall = round(
-
         (
             documentation +
             maintainability +
             security +
             organization +
             dependencies
-
         ) / 5
-
     )
 
     return {
-
         "documentation": documentation,
         "maintainability": maintainability,
         "security": security,
         "organization": organization,
         "dependencies": dependencies,
         "overall": overall
-
     }
