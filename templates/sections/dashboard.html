@@ -1,0 +1,67 @@
+{% if statistics and analysis %}
+
+<hr style="margin:40px 0;">
+
+<h2>Executive Dashboard</h2>
+
+<div class="dashboard-grid">
+
+    <div class="metric-card">
+
+        <h4>Overall Health</h4>
+
+        <div class="metric-value">
+            {{ analysis.health.overall }}
+        </div>
+
+    </div>
+
+    <div class="metric-card">
+
+        <h4>Total Files</h4>
+
+        <div class="metric-value">
+            {{ statistics.total_files }}
+        </div>
+
+    </div>
+
+    <div class="metric-card">
+
+        <h4>Warnings</h4>
+
+        <div class="metric-value">
+            {{ analysis.suggestions|length }}
+        </div>
+
+    </div>
+
+    <div class="metric-card">
+
+        <h4>Secrets</h4>
+
+        <div class="metric-value">
+            {{ analysis.secrets|length }}
+        </div>
+
+    </div>
+
+</div>
+
+<h3 style="margin-top:40px;">
+Recent Findings
+</h3>
+
+<div class="findings-panel">
+
+    {% for suggestion in analysis.suggestions %}
+
+        <div class="finding-item">
+            ⚠ {{ suggestion }}
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
