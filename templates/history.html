@@ -5,171 +5,192 @@
 
 <meta charset="UTF-8">
 
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>Scan History</title>
 
-<style>
-
-body{
-font-family:Arial;
-margin:40px;
-background:#f8fafc;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-background:white;
-}
-
-th,td{
-border:1px solid #ddd;
-padding:12px;
-text-align:center;
-}
-
-th{
-background:#1e293b;
-color:white;
-}
-
-.card{
-display:inline-block;
-background:white;
-padding:20px;
-margin-right:20px;
-margin-bottom:20px;
-border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,.1);
-min-width:180px;
-}
-
-button{
-padding:10px 18px;
-cursor:pointer;
-margin-top:10px;
-}
-
-input{
-padding:10px;
-width:300px;
-}
-
-a{
-text-decoration:none;
-}
-
-</style>
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 
 <body>
 
-<h1>Scan History</h1>
+<div class="layout">
 
-<div class="card">
-<b>Total Scans</b><br><br>
-{{ summary.total_scans or 0 }}
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                SDP
+            </div>
+
+            <h2>
+                Software Diagnostics
+            </h2>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a class="active-link">
+                History
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+
+        <section class="hero">
+
+            <div>
+
+                <h1>
+                    Scan History
+                </h1>
+
+                <p>
+                    View previous project scans and health reports.
+                </p>
+
+            </div>
+
+            <div class="status-badge">
+                {{ summary.total_scans or 0 }} Scans
+            </div>
+
+        </section>
+
+        <section class="dashboard-section">
+
+            <div class="metric-card">
+
+                <span>Total Scans</span>
+
+                <h2>
+                    {{ summary.total_scans or 0 }}
+                </h2>
+
+            </div>
+
+            <div class="metric-card">
+
+                <span>Best Score</span>
+
+                <h2>
+                    {{ summary.best_score or 0 }}
+                </h2>
+
+            </div>
+
+            <div class="metric-card">
+
+                <span>Average Score</span>
+
+                <h2>
+                    {{ summary.average_score or 0 }}
+                </h2>
+
+            </div>
+
+        </section>
+
+        <section class="report-card">
+
+            <form action="/history" method="GET">
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search project..."
+                    value="{{ search }}">
+
+                <button type="submit">
+
+                    Search
+
+                </button>
+
+            </form>
+
+            <br>
+
+            <a href="/history/clear">
+
+                <button type="button">
+
+                    Clear History
+
+                </button>
+
+            </a>
+
+        </section>
+
+        <section class="report-card">
+
+            <table class="history-table">
+
+                <thead>
+
+                <tr>
+
+                    <th>Project</th>
+                    <th>Date</th>
+                    <th>Health</th>
+                    <th>Files</th>
+                    <th>Lines</th>
+                    <th>Warnings</th>
+                    <th>Action</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for row in history %}
+
+                <tr>
+
+                    <td>{{ row.project_name }}</td>
+                    <td>{{ row.scan_date }}</td>
+                    <td>{{ row.overall_score }}</td>
+                    <td>{{ row.total_files }}</td>
+                    <td>{{ row.total_lines }}</td>
+                    <td>{{ row.warnings }}</td>
+
+                    <td>
+
+                        <a href="/history/delete/{{ row.id }}">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
 </div>
-
-<div class="card">
-<b>Best Score</b><br><br>
-{{ summary.best_score or 0 }}
-</div>
-
-<div class="card">
-<b>Average Score</b><br><br>
-{{ summary.average_score or 0 }}
-</div>
-
-<form action="/history" method="GET">
-
-<input
-type="text"
-name="search"
-placeholder="Search project..."
-value="{{ search }}">
-
-<button type="submit">
-
-Search
-
-</button>
-
-</form>
-
-<br>
-
-<a href="/history/clear">
-
-<button>
-
-Clear History
-
-</button>
-
-</a>
-
-<table>
-
-<tr>
-
-<th>Project</th>
-
-<th>Date</th>
-
-<th>Health</th>
-
-<th>Files</th>
-
-<th>Lines</th>
-
-<th>Warnings</th>
-
-<th>Action</th>
-
-</tr>
-
-{% for row in history %}
-
-<tr>
-
-<td>{{ row.project_name }}</td>
-
-<td>{{ row.scan_date }}</td>
-
-<td>{{ row.overall_score }}</td>
-
-<td>{{ row.total_files }}</td>
-
-<td>{{ row.total_lines }}</td>
-
-<td>{{ row.warnings }}</td>
-
-<td>
-
-<a href="/history/delete/{{ row.id }}">
-
-Delete
-
-</a>
-
-</td>
-
-</tr>
-
-{% endfor %}
-
-</table>
-
-<br>
-
-<a href="/">
-
-← Back to Dashboard
-
-</a>
 
 </body>
-
 </html>

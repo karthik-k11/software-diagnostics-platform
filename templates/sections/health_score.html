@@ -4,18 +4,86 @@
 
 <div style="text-align:left;line-height:2;">
 
-<p><strong>Documentation:</strong> {{ analysis.health.documentation }}/100</p>
+<h4>
+Documentation:
+{{ analysis.health.documentation }}/100
+</h4>
 
-<p><strong>Maintainability:</strong> {{ analysis.health.maintainability }}/100</p>
+<ul>
 
-<p><strong>Security:</strong> {{ analysis.health.security }}/100</p>
+{% for reason in analysis.health.reasons.documentation %}
 
-<p><strong>Organization:</strong> {{ analysis.health.organization }}/100</p>
+<li>{{ reason }}</li>
 
-<p><strong>Dependencies:</strong> {{ analysis.health.dependencies }}/100</p>
+{% endfor %}
+
+</ul>
+
+<h4>
+Maintainability:
+{{ analysis.health.maintainability }}/100
+</h4>
+
+<ul>
+
+{% for reason in analysis.health.reasons.maintainability %}
+
+<li>{{ reason }}</li>
+
+{% endfor %}
+
+</ul>
+
+<h4>
+Security:
+{{ analysis.health.security }}/100
+</h4>
+
+<ul>
+
+{% for reason in analysis.health.reasons.security %}
+
+<li>{{ reason }}</li>
+
+{% endfor %}
+
+</ul>
+
+<h4>
+Organization:
+{{ analysis.health.organization }}/100
+</h4>
+
+<ul>
+
+{% for reason in analysis.health.reasons.organization %}
+
+<li>{{ reason }}</li>
+
+{% endfor %}
+
+</ul>
+
+<h4>
+Dependencies:
+{{ analysis.health.dependencies }}/100
+</h4>
+
+<ul>
+
+{% for reason in analysis.health.reasons.dependencies %}
+
+<li>{{ reason }}</li>
+
+{% endfor %}
+
+</ul>
 
 <hr>
 
-<h2>Overall Health : {{ analysis.health.overall }}/100</h2>
+<h2>
+Overall Health :
+{{ analysis.health.overall }}/100
+</h2>
 
 </div>

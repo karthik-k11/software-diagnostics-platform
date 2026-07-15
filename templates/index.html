@@ -1,137 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Software Diagnostics Platform</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 
 <body>
 
-<div class="app">
+<div class="layout">
+
+    <!-- Sidebar -->
 
     <aside class="sidebar">
 
-        <div class="logo">SDP</div>
+        <div class="brand">
 
-        <h2>Software Diagnostics</h2>
+            <div class="brand-logo">
+                SDP
+            </div>
 
-        <nav>
-            <a class="active">Dashboard</a>
-            <a>Project Structure</a>
-            <a>Statistics</a>
-            <a>Documentation</a>
-            <a>Dependencies</a>
-            <a>Security</a>
-            <a>Suggestions</a>
-            <a href="/history">History</a>
-            <a>Export</a>
+            <h2>
+                Software Diagnostics
+            </h2>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="#dashboard">
+                Dashboard
+            </a>
+
+            <a href="#statistics">
+                Statistics
+            </a>
+
+            <a href="#security">
+                Security
+            </a>
+
+            <a href="/history">
+                History
+            </a>
+
+            <a href="#export">
+                Export
+            </a>
+
         </nav>
 
     </aside>
 
+    <!-- Main -->
+
     <main class="main-content">
 
-        <header class="topbar">
+        <!-- Header -->
+
+        <section class="hero">
 
             <div>
-                <h1>Software Diagnostics Platform</h1>
-                <p>Analyze, evaluate and improve Python software projects.</p>
+
+                <h1>
+                    Software Diagnostics Platform
+                </h1>
+
+                <p>
+                    Analyze, evaluate and improve Python software projects.
+                </p>
+
             </div>
 
-            <div class="status">
+            <div class="status-badge">
                 Ready
             </div>
 
-        </header>
+        </section>
 
-        <section class="workspace">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
 
-            <div class="upload-panel">
+        <div class="success-message">
 
-                <h2>Upload Python Project</h2>
+            {{ messages[0] }}
 
-                <p>Select a ZIP file containing your Python project.</p>
+        </div>
 
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <div style="margin-bottom:20px;color:#15803d;font-weight:600;">
-                    {{ messages[0] }}
-                </div>
-                {% endif %}
-                {% endwith %}
+        {% endif %}
+        {% endwith %}
 
-                <form action="/upload" method="POST" enctype="multipart/form-data">
+        <!-- Dashboard -->
 
-                    <input
-                        type="file"
-                        name="project_zip"
-                        accept=".zip"
-                        required
-                        style="margin-bottom:25px;">
+        {% if statistics and analysis %}
 
-                    <br>
+        <section
+            id="dashboard"
+            class="dashboard-section">
 
-                    <button type="submit">
-                        Upload Project
-                    </button>
-                    <br><br>
+            <div class="metric-card">
 
-                    <a href="/export/json">
+                <span>Health</span>
 
-                    <button type="button">
+                <h2>
+                    {{ analysis.health.overall }}
+                </h2>
 
-                    Export JSON Report
+            </div>
 
-                    </button>
+            <div class="metric-card">
 
-                    </a>
-                    <br><br>
+                <span>Files</span>
 
-                    <a href="/export/markdown">
+                <h2>
+                    {{ statistics.total_files }}
+                </h2>
 
-                    <button type="button">
+            </div>
 
-                    Export Markdown Report
+            <div class="metric-card">
 
-                    </button>
+                <span>Warnings</span>
 
-                    </a>
-                    <br><br>
+                <h2>
+                    {{ analysis.suggestions|length }}
+                </h2>
 
-                    <a href="/export/pdf">
+            </div>
 
-                    <button type="button">
+            <div class="metric-card">
 
-                    Export PDF Report
+                <span>Secrets</span>
 
-                    </button>
-
-                    </a>
-
-                </form>
-
-                {% include "sections/dashboard.html" %}
-
-                {% if statistics %}
-                    {% include "sections/statistics.html" %}
-                    {% include "sections/documentation.html" %}
-                {% endif %}
-
-                {% if analysis %}
-                    {% include "sections/code_quality.html" %}
-                    {% include "sections/security.html" %}
-                    {% include "sections/dependency.html" %}
-                    {% include "sections/health_score.html" %}
-                    {% include "sections/suggestions.html" %}
-                {% endif %}
+                <h2>
+                    {{ analysis.secrets|length }}
+                </h2>
 
             </div>
 
         </section>
+
+        <section class="findings-card">
+
+            <h3>
+                Recent Findings
+            </h3>
+
+            <div class="findings-list">
+
+                {% for suggestion in analysis.suggestions %}
+
+                <div class="finding">
+
+                    ⚠ {{ suggestion }}
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+        <!-- Upload -->
+
+        <section class="upload-card">
+
+            <h2>
+                Upload Python Project
+            </h2>
+
+            <p>
+                Select a ZIP file containing your Python project.
+            </p>
+
+            <form
+                action="/upload"
+                method="POST"
+                enctype="multipart/form-data">
+
+                <input
+                    type="file"
+                    name="project_zip"
+                    accept=".zip"
+                    required>
+
+                <button type="submit">
+
+                    Analyze Project
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Export -->
+
+        {% if statistics and analysis %}
+
+        <section
+            id="export"
+            class="export-card">
+
+            <h3>
+                Export Reports
+            </h3>
+
+            <div class="export-dropdown">
+
+                <button id="exportButton">
+
+                    Export Report ▼
+
+                </button>
+
+                <div id="exportMenu" class="export-menu">
+
+                    <a href="/export/json">
+                        JSON Report
+                    </a>
+
+                    <a href="/export/markdown">
+                        Markdown Report
+                    </a>
+
+                    <a href="/export/pdf">
+                        PDF Report
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+        <!-- Reports -->
+
+        {% if statistics %}
+
+        <section
+            id="statistics"
+            class="report-card">
+
+            {% include "sections/statistics.html" %}
+
+        </section>
+
+        <section class="report-card">
+
+            {% include "sections/documentation.html" %}
+
+        </section>
+
+        {% endif %}
+
+        {% if analysis %}
+
+        <section class="report-card">
+
+            {% include "sections/code_quality.html" %}
+
+        </section>
+
+        <section
+            id="security"
+            class="report-card">
+
+            {% include "sections/security.html" %}
+
+        </section>
+
+        <section class="report-card">
+
+            {% include "sections/dependency.html" %}
+
+        </section>
+
+        <section class="report-card">
+
+            {% include "sections/health_score.html" %}
+
+        </section>
+
+        <section class="report-card">
+
+            {% include "sections/suggestions.html" %}
+
+        </section>
+
+        {% endif %}
 
     </main>
 

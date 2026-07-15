@@ -18,6 +18,18 @@
 
 </ul>
 
+<h4>Project Modules</h4>
+
+<ul>
+
+{% for module, count in analysis.project_modules.items() %}
+
+<li>{{ module }} ({{ count }})</li>
+
+{% endfor %}
+
+</ul>
+
 <h4>Third-Party Libraries</h4>
 
 <ul>

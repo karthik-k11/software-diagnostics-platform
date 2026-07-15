@@ -13,3 +13,7 @@ database/*.db
 
 .DS_Store
 Thumbs.db
+
+uploads/
+reports/
+scan_history.db

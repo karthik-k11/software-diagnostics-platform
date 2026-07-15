@@ -25,11 +25,46 @@ IGNORED_EMPTY_FILES = {
 COMMENT_TAGS = ("TODO", "FIXME", "HACK", "NOTE")
 
 SECRET_PATTERNS = [
-    ("API Key", re.compile(r"api[_-]?key\s*=", re.IGNORECASE)),
-    ("Secret Key", re.compile(r"secret[_-]?key\s*=", re.IGNORECASE)),
-    ("Password", re.compile(r"password\s*=", re.IGNORECASE)),
-    ("Token", re.compile(r"token\s*=", re.IGNORECASE)),
-    ("AWS Access Key", re.compile(r"AKIA[0-9A-Z]{16}")),
+
+    (
+        "API Key",
+        re.compile(
+            r'api[_-]?key\s*=\s*["\'][^"\']{8,}["\']',
+            re.IGNORECASE
+        )
+    ),
+
+    (
+        "Secret Key",
+        re.compile(
+            r'secret[_-]?key\s*=\s*["\'][^"\']{8,}["\']',
+            re.IGNORECASE
+        )
+    ),
+
+    (
+        "Password",
+        re.compile(
+            r'password\s*=\s*["\'][^"\']{4,}["\']',
+            re.IGNORECASE
+        )
+    ),
+
+    (
+        "Token",
+        re.compile(
+            r'token\s*=\s*["\'][^"\']{8,}["\']',
+            re.IGNORECASE
+        )
+    ),
+
+    (
+        "AWS Access Key",
+        re.compile(
+            r'AKIA[0-9A-Z]{16}'
+        )
+    )
+
 ]
 
 
@@ -50,6 +85,7 @@ def analyze_project(project_path, statistics):
 
         "standard_imports": {},
         "third_party_imports": {},
+        "project_modules": {},
         "total_imports": 0,
 
         "health": {},
@@ -94,6 +130,17 @@ def analyze_project(project_path, statistics):
             results["empty_folders"].append(
                 str(folder.relative_to(root))
             )
+    project_python_files = {
+
+        file.stem
+
+        for file in root.rglob("*.py")
+
+        if not any(
+            part in IGNORED_FOLDERS
+            for part in file.parts
+        )
+    }        
 
     for py_file in root.rglob("*.py"):
 
@@ -127,18 +174,25 @@ def analyze_project(project_path, statistics):
                             "os", "sys", "json", "re",
                             "pathlib", "collections",
                             "hashlib", "zipfile",
-                            "ast", "tokenize"
+                            "ast", "tokenize",
+                            "sqlite3", "time"
                         }:
 
                             results["standard_imports"][module_name] = (
                                 results["standard_imports"].get(module_name, 0) + 1
                             )
 
+                        elif module_name in project_python_files:
+
+                            results["project_modules"][module_name] = (
+                                results["project_modules"].get(module_name, 0) + 1
+                            )
+
                         else:
 
                             results["third_party_imports"][module_name] = (
                                 results["third_party_imports"].get(module_name, 0) + 1
-                            )           
+                            )       
 
                 elif isinstance(node, ast.ImportFrom):
 
@@ -152,11 +206,18 @@ def analyze_project(project_path, statistics):
                             "os", "sys", "json", "re",
                             "pathlib", "collections",
                             "hashlib", "zipfile",
-                            "ast", "tokenize"
+                            "ast", "tokenize",
+                            "sqlite3", "time"
                         }:
 
                             results["standard_imports"][module_name] = (
                                 results["standard_imports"].get(module_name, 0) + 1
+                            )
+
+                        elif module_name in project_python_files:
+
+                            results["project_modules"][module_name] = (
+                                results["project_modules"].get(module_name, 0) + 1
                             )
 
                         else:
@@ -224,6 +285,9 @@ def analyze_project(project_path, statistics):
                     })
 
                 for secret_type, pattern in SECRET_PATTERNS:
+
+                    if "os.getenv" in line:
+                        continue
 
                     if pattern.search(line):
 
