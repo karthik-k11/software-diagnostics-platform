@@ -349,3 +349,16 @@ Suggestions:
 ### Scan History
 
 ![Scan History](images/History_Page.png)
+
+---
+
+## Future Improvements
+
+- Support Multiple Programming Languages
+- Advanced Security Scanning
+- Code Complexity Metrics
+- Dependency Vulnerability Detection
+- Interactive Charts and Visualizations
+- Team Collaboration Features
+
+---
