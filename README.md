@@ -289,3 +289,63 @@ Suggestions:
 ```
 
 ---
+
+## Screenshots
+
+### Dashboard Overview
+
+![Dashboard Overview](images/Dashboard.png)
+
+---
+
+### Project Statistics
+
+![Project Statistics](images/Project_Statistics.png)
+
+---
+
+### Project Structure
+
+![Project Structure](images/Project_Structure.png)
+
+---
+
+### Documentation Analysis
+
+![Documentation Analysis](images/Documentation_Analysis.png)
+
+---
+
+### Code Quality Analysis
+
+![Code Quality Analysis](images/Code_Quality.png)
+
+---
+
+### Security Analysis
+
+![Security Analysis](images/Security_Analysis.png)
+
+---
+
+### Dependency Analysis
+
+![Dependency Analysis](images/Dependency_Analysis.png)
+
+---
+
+### Health Score
+
+![Health Score](images/Health_Score.png)
+
+---
+
+### Suggestions
+
+![Suggestions](images/Suggestions.png)
+
+---
+
+### Scan History
+
+![Scan History](images/History_Page.png)
